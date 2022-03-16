@@ -13,7 +13,7 @@ class RateAPI {
         context: Context,
         observer: IObservel
     ) {
-        val url = "https://api.hgbrasil.com/finance"
+        val url = "https://api.hgbrasil.com/finance?key=df1b1400"
         val queue = Volley.newRequestQueue(context)
         val stringReq = StringRequest(
             Request.Method.GET,
@@ -23,8 +23,8 @@ class RateAPI {
             {
                 result->
                 val jsonObject = JSONObject(result)
-                val result = jsonObject.getJSONObject("result")
-                val currencies = result.getJSONObject("Currencies")
+                val results = jsonObject.getJSONObject("results")
+                val currencies = results.getJSONObject("currencies")
                 val dollarValue = currencies.getJSONObject("USD").getDouble("buy")
                 val euroValue = currencies.getJSONObject("EUR").getDouble("buy")
 
@@ -39,5 +39,6 @@ class RateAPI {
                 Log.e("APPDEBUG", "Erro!!!")
             }
         )
+        queue.add(stringReq)
         }
     }

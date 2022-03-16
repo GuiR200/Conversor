@@ -7,7 +7,7 @@ class Price {
 
     fun getValue() = this.value
 
-    fun setValeue(value:Double){
+    fun setValue(value:Double){
         this.value.set(value)
     }
 }
